@@ -16,13 +16,14 @@ public class ExcelRead extends main {
     //Route what we find the file excel
     String filePath = "Example.xlsx";
     //endregion
-    public void loginFromExcel() throws IOException, InterruptedException{
 
-        //region Web Elements
-        WebElement inputUserName = driver.findElement(inputUserNameLocator);
-        WebElement inputPassword = driver.findElement(inputPasswordLocator);
-        WebElement btnSubmit = driver.findElement(btnSubmitLocator);
-        //endregion
+    //region Web Elements
+    WebElement inputUserName = driver.findElement(inputUserNameLocator);
+    WebElement inputPassword = driver.findElement(inputPasswordLocator);
+    WebElement btnSubmit = driver.findElement(btnSubmitLocator);
+    //endregion
+
+    public void loginFromExcel() throws IOException, InterruptedException{
 
         //region Specific Cell and Row
         //Indicates the route of file, name of page, number of row and number of cell from takes the dates.

@@ -11,16 +11,19 @@ import java.util.Map;
 
 public class ExtentReport {
 
+    //region Variables
     static ExtentReports extent;
     static Map<Integer, ExtentTest> extentTestMap = new HashMap<>();
+    static File pathReport = new File("src/reportes/index.html");
+    static ExtentTest test = null;
+    //endregion
 
     //Generate file with index.html
     public synchronized static ExtentReports getReporter(){
-        File pathReport = new File("src/reportes/index.html");
         if (extent == null){
             ExtentSparkReporter html = new ExtentSparkReporter(pathReport);
             html.config().setDocumentTitle("Test1");
-            html.config().setReportName("ProyectoAutomatizacion");
+            html.config().setReportName("ProtectAutonomization");
             html.config().setTheme(Theme.DARK);
             extent = new ExtentReports();
             extent.attachReporter(html);
@@ -30,8 +33,14 @@ public class ExtentReport {
 
     //Starts the test, adding parameters for add the name and a description
     public static synchronized ExtentTest startTest(String testName, String desc){
-        ExtentTest test = getReporter().createTest(testName, desc);
-        extentTestMap.put((int) (long) (Thread.currentThread().getId()), test);
+
+        try {
+            test = getReporter().createTest(testName, desc);
+            extentTestMap.put((int) (long) (Thread.currentThread().getId()), test);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         return test;
     }
 
