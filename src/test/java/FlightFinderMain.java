@@ -5,7 +5,7 @@ import utilities.ExtentReport;
 
 public class FlightFinderMain {
 
-    FlightFinder flightFinder = new FlightFinder();
+     FlightFinder flightFinder = new FlightFinder();
 
     @BeforeSuite
     public void beforeTest() {

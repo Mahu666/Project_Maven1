@@ -26,7 +26,6 @@ public class FlightFinder extends main {
     static By listAirlineLocator = By.xpath("//select[@name='airline']");
     static By btnContinue = By.xpath("//input[@name='findFlights']");
     EnumMonthList enumMonthList;
-    WebDriverWait waitFlightType = new WebDriverWait(driver, 45);
     //endregion
 
     public void selectsForm() throws InterruptedException {
@@ -51,6 +50,7 @@ public class FlightFinder extends main {
         //endregion
 
         //region SelectFlightType
+        WebDriverWait waitFlightType = new WebDriverWait(driver, 45);
         waitFlightType.until(ExpectedConditions.elementToBeClickable(rdbtnRoundTripLocator));
         driver.findElement(rdbtnRoundTripLocator).click();
         Thread.sleep(200);

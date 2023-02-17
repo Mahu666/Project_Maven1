@@ -1,14 +1,9 @@
-import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-
-import static java.time.Duration.*;
 
 public class Url extends main {
     //Refactoring WebElement ByName
