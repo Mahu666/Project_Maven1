@@ -6,7 +6,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.EnumMonthList;
 import utilities.ScreenShot;
 
-public class FlightFinder extends main{
+import java.io.IOException;
+
+public class FlightFinder extends main {
 
     //region Locators for register a Flight
     static By rdbtnRoundTripLocator = By.xpath("//input[@value='roundtrip']");
@@ -23,39 +25,45 @@ public class FlightFinder extends main{
     static By rdbtnFirstLocator = By.xpath("//input[@value='First']");
     static By listAirlineLocator = By.xpath("//select[@name='airline']");
     static By btnContinue = By.xpath("//input[@name='findFlights']");
-
-
+    EnumMonthList enumMonthList;
+    WebDriverWait waitFlightType = new WebDriverWait(driver, 45);
     //endregion
 
-    EnumMonthList enumMonthList;
-    public void selectFlightType(){
-        WebDriverWait waitFlightType = new WebDriverWait(driver, 45);
-        waitFlightType.until(ExpectedConditions.elementToBeClickable(rdbtnRoundTripLocator));
-        driver.findElement(rdbtnRoundTripLocator).click();
-    }
+    public void selectsForm() throws InterruptedException {
 
-    //los 3 métodos se pueden hacer en 1.
-    public void selectPassengerList(){
+        //region SelectPassenger
         Select selectPassenger = new Select(driver.findElement(listPassengersLocator));
         selectPassenger.selectByVisibleText("4");
-    }
+        Thread.sleep(200);
+        //endregion
 
-    public void selectDepartingList(){
+        //region SelectDeparting
         Select selectDeparting = new Select(driver.findElement(listDepartingLocator));
         selectDeparting.selectByIndex(5);
-    }
+        Thread.sleep(200);
+        //endregion
 
-    public void selectMonthList(){
+        //region SelectMonth
         Select selectMonth = new Select(driver.findElement(listMonthLocator));
         selectMonth.selectByVisibleText(String.valueOf(enumMonthList.December));
-        //selectMonth.selectByValue(String.valueOf(enumMonthList.September));
+        System.out.println(enumMonthList.December.ordinal());
+        Thread.sleep(200);
+        //endregion
+
+        //region SelectFlightType
+        waitFlightType.until(ExpectedConditions.elementToBeClickable(rdbtnRoundTripLocator));
+        driver.findElement(rdbtnRoundTripLocator).click();
+        Thread.sleep(200);
+        //endregion
+
     }
 
     public void btnContinueClick() throws InterruptedException{
-        //Scroll on screen
+        //region Scroll on Screen
         driver.findElement(btnContinue).sendKeys(Keys.DOWN);
         ScreenShot.takeScreenShot("Screenshot_", driver);
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         driver.findElement(btnContinue).click();
+        //endregion
     }
 }

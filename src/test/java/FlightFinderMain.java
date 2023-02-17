@@ -20,11 +20,13 @@ public class FlightFinderMain {
                 "validar que se pueda reservar un vuelo de ida y de regreso");
         ThirdExample.actionsOnWebElement();
         ThirdExample.closeAdd();
-        flightFinder.selectPassengerList();
-        Thread.sleep(200);
-        flightFinder.selectDepartingList();
-        Thread.sleep(200);
-        flightFinder.selectMonthList();
+
+        try {
+            flightFinder.selectsForm();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         Thread.sleep(2000);
         flightFinder.btnContinueClick();
         Thread.sleep(2000);
